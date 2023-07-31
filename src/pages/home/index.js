@@ -1,10 +1,11 @@
 import LocalBody from "./components/localBody";
+import Permit from "./components/permit";
 import "./style.css";
 
 import Accordion from "react-bootstrap/Accordion";
 import { Component } from "react";
 
-function App() {
+function App({ value, handleChangeFromPage }) {
   const accordionDetails = [
     {
       name: "Local Body Details",
@@ -12,7 +13,7 @@ function App() {
     },
     {
       name: "Permit & Occupancy Details",
-      component: <LocalBody />,
+      component: <Permit />,
     },
     {
       name: "Survey Details || Village Details",
@@ -22,9 +23,9 @@ function App() {
 
   return (
     <div class="root">
-      <Accordion defaultActiveKey="0">
+      <Accordion defaultActiveKey={value}>
         {accordionDetails.map((el, index) => (
-          <Accordion.Item eventKey={index}>
+          <Accordion.Item key={el} eventKey={index}>
             <Accordion.Header>{el.name}</Accordion.Header>
             <Accordion.Body>{el.component}</Accordion.Body>
           </Accordion.Item>

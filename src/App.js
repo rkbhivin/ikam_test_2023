@@ -2,18 +2,27 @@ import "./App.css";
 import Routes from "./routes";
 import Sidebar from "./components/sidebar";
 import NavBar from "./components/navBar";
-import React, { useReducer } from "react";
-
-const initialState = { count: 0 };
+import React, { useState } from "react";
+import Home from "./pages/home";
 
 function App() {
+  const [value, setValue] = useState("0");
+  const handleChange = (value) => {
+    setValue(value);
+  };
+
+  const handleChangeFromPage = (value) => {
+    setValue(value);
+  };
+
   return (
     <div className="App">
       <NavBar />
       <div className="content-wrapper">
-        <Sidebar />
+        <Sidebar handleChange={handleChange} />
         <div className="content-style">
-          <Routes />
+          {/* <Routes /> */}
+          <Home value={value} handleChangeFromPage={handleChangeFromPage} />
         </div>
       </div>
     </div>
